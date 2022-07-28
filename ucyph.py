@@ -73,13 +73,14 @@ FUNCTION_MAP = {'3':caesar,
 
 
 # ---- Function Names ----
+
 def func_names(a):
     FUNCTION_NAMES = {'3':'Caesar',
                       '13':'Rot-13',
                       '47':'Rot-47',}
     return FUNCTION_NAMES[a]
 
-# ---- Handling ----
+# ---- Arguments ----
 
 parser = argparse.ArgumentParser(description='Encrypt a string.')
 parser.add_argument('-c','--code', required=True, choices=FUNCTION_MAP.keys(), metavar='', help='Encrypt message using the given cipher')
@@ -95,6 +96,7 @@ volume.add_argument('-v','--verbose', action='store_true', help='print verbose')
 
 args = parser.parse_args()
 
+# ---- Handling ----
 
 if __name__ == '__main__':
     func = FUNCTION_MAP[args.code]
