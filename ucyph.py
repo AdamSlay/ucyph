@@ -4,15 +4,27 @@
 import argparse
 
 
-
 # ---- Ciphers ----
 
-# OG Caesar 
-def caesar(strng):
+# OG Caesar - shift of 3 
+def caesar(strng, encode=True):
     az = 'abcdefghijklmnopqrstuvwxyz'
     new = ''
-    for i in strng:
-        new += az[(az.index(i) + 3) % 26]
+    if encode:
+        for i in strng:
+            if i.isalpha():
+                 new += az[(az.index(i) + 3) % 26]
+            else:
+                new += i
+    else:
+        for i in strng:
+            if i.isalpha():
+                if az.index(i) < 3:
+                     new += az[26 - (abs(az.index(i) - 3) % 26)]
+                else:
+                    new += az[az.index(i) - 3]
+            else:
+                new += i
     return new
 
 
@@ -54,16 +66,53 @@ def rot13(strng):
 
 # ---- Function Map ----
 
-FUNCTION_MAP = {'caesar':caesar,
-                'rot47':rot47,
-                'rot13':rot13}
+FUNCTION_MAP = {'3':caesar,
+                '47':rot47,
+                '13':rot13}
 
+
+
+# ---- Function Names ----
+def func_names(a):
+    FUNCTION_NAMES = {'3':'Caesar',
+                      '13':'Rot-13',
+                      '47':'Rot-47',}
+    return FUNCTION_NAMES[a]
 
 # ---- Handling ----
 
-parser = argparse.ArgumentParser(description='En/De-crypt a string.')
-parser.add_argument('command', choices=FUNCTION_MAP.keys(), help='Encrypt message using the given cipher')
-parser.add_argument('string', help='String to be En/De-crypted')
+parser = argparse.ArgumentParser(description='Encrypt a string.')
+parser.add_argument('-c','--code', required=True, choices=FUNCTION_MAP.keys(), metavar='', help='Encrypt message using the given cipher')
+parser.add_argument('-s','--string', required=True, metavar='', help='String to be Encrypted/Decrypted')
+
+en_de = parser.add_mutually_exclusive_group()
+en_de.add_argument('-D', '--decode', action='store_true', help='decode the string using current cipher')
+en_de.add_argument('-E', '--encode', action='store_true', help='encode the string using current cipher')
+
+volume = parser.add_mutually_exclusive_group()
+volume.add_argument('-q','--quiet', action='store_true', help='print quiet')
+volume.add_argument('-v','--verbose', action='store_true', help='print verbose')
+
 args = parser.parse_args()
-func = FUNCTION_MAP[args.command]
-print(func(args.string))
+
+
+if __name__ == '__main__':
+    func = FUNCTION_MAP[args.code]
+
+    if args.encode:
+        final = func(args.string, True)
+    elif args.decode:
+        final = func(args.string, False)
+    else:
+        final = func(args.string)
+
+    if args.quiet:
+        print(final)
+    elif args.verbose:
+        print(f'Using the {func_names(args.code)} Cipher to encrypt \"{args.string}\" results in:\n\n\"{final}\"')
+    else:
+        print(f'The encrypted text is: \"{final}\"')
+
+
+
+
