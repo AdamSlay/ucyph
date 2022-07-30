@@ -14,4 +14,4 @@ The basic syntax for a command includes the cipher to be used, the text to be us
 ucyph -c 5 -k 'password' -s 'Hello World' -Ev
 ```
 
-This command calls the ```Vigenere``` cipher via the ```-c``` flag with a *key* of 'password', **encrypts** the text via the ```-E``` flag, and prints a verbose version of the output. 
+This command calls the ```Vigenere``` cipher via the ```-c``` flag with a **key** of 'password', **encrypts** the text via the ```-E``` flag, and prints a verbose version of the output. 
