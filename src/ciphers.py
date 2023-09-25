@@ -66,9 +66,9 @@ def vigenere(text, key, encode=True):
     alph = 'abcdefghijklmnopqrstuvwxyz'
     key_repeat = []
     encoded = ''
-   
+
     if encode:
-        for position,value in enumerate(text):
+        for position, value in enumerate(text):
             key_repeat.append(key[position % len(key)])
 
             if value in alph:
@@ -81,7 +81,7 @@ def vigenere(text, key, encode=True):
         return encoded
 
     else:
-        for position,value in enumerate(text):
+        for position, value in enumerate(text):
             key_repeat.append(key[position % len(key)])
 
             if value in alph:
@@ -95,6 +95,7 @@ def vigenere(text, key, encode=True):
                 encoded += value
         return encoded
 
+
 # Playfair
 def playfair(strng, key, encode=True):
     AZ = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -105,7 +106,7 @@ def playfair(strng, key, encode=True):
 
     # Convert key to upper + no space
     key = key.upper()
-    key = key.replace(' ','')
+    key = key.replace(' ', '')
 
     # Create beginning of diagram using key
     for letter in key:
@@ -199,11 +200,11 @@ def playfair(strng, key, encode=True):
             else:
                 # is the row index 0?
                 if coord_a[0] == 0:
-                    encoded.append(diagram[coord_a[4]][coord_a[1]])
+                    encoded.append(diagram[4][coord_a[1]])
                 else:
                     encoded.append(diagram[coord_a[0] - 1][coord_a[1]])
                 if coord_b[0] == 0:
-                    encoded.append(diagram[coord_b[4]][coord_b[1]])
+                    encoded.append(diagram[4][coord_b[1]])
                 else:
                     encoded.append(diagram[coord_b[0] - 1][coord_b[1]])
         # Rule 3: Make square and grab opposite corner on same row
@@ -213,5 +214,3 @@ def playfair(strng, key, encode=True):
 
     # -----Return-----
     return ''.join(encoded)
-
-
