@@ -2,6 +2,7 @@
 
 # OG Caesar - shift of 3
 def caesar(strng, encode=True):
+    strng = strng.lower()
     az = 'abcdefghijklmnopqrstuvwxyz'
     new = ''
     if encode:
@@ -60,9 +61,12 @@ def rot13(strng):
 
 # Vigenere
 def vigenere(text, key, encode=True):
+    text = text.lower()
+    key = key.lower()
     alph = 'abcdefghijklmnopqrstuvwxyz'
     key_repeat = []
     encoded = ''
+   
     if encode:
         for position,value in enumerate(text):
             key_repeat.append(key[position % len(key)])
