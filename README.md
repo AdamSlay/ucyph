@@ -31,3 +31,18 @@ Now, to decrypt the text from **output.txt**, simply add ```-d``` flag to the en
 ```shell
 ucyph 11 output.txt -k password -d
 ```
+
+## Ciphers
+
+#### Cipher list and usage codes:
+| Cipher   | Usage Code  | Required Key |
+|----------|-------------|--------------|
+| Caesar   | 3           | No           |
+| Vigenere | 5           | Yes          |
+| Playfair | 11          | Yes          |
+| Rot-13   | 13          | No           |
+| Rot-47   | 47          | No           |
+
+
+
+
