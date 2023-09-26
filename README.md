@@ -3,8 +3,10 @@ Encrypt and Decrypt text from the command line using ciphers that are common and
 
 ## Table of Contents
 
-## Setup
-Coming soon.
+## Installation
+```bash
+pip install ucyph
+```
 
 ## Usage
 

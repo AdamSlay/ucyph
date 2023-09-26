@@ -1,4 +1,4 @@
-from src.ciphers import *
+from src.ucyph.ciphers import *
 
 
 def test_caesar():

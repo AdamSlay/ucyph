@@ -2,7 +2,7 @@
 
 import argparse
 
-from ciphers import *
+from src.ucyph.ciphers import *
 
 FUNCTION_MAP = {'3': caesar,
                 '47': rot47,
