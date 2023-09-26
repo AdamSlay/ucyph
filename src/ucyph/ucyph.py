@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import toml
 
 from ciphers import *
 from utils import read_file, write_file
@@ -22,7 +23,12 @@ def func_names(a):
 
 
 def parse_args():
+    # Read the version from pyproject.toml
+    project_info = toml.load("pyproject.toml")["project"]
+    version = project_info["version"]
+
     parser = argparse.ArgumentParser(description='Encrypt a string.')
+    parser.add_argument('--version', action='version', version=f'%(prog)s {version}')
     parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='', help='Encrypt message using the given cipher')
     parser.add_argument('file', metavar='', help='File to be Encrypted/Decrypted')
     parser.add_argument('-o', '--output', metavar='', help='Output file')
@@ -40,6 +46,10 @@ def main():
         args = parse_args()
         func = FUNCTION_MAP[args.code]
         encode = args.encode if args.encode or args.decode else True
+
+        if args.code in ['5', '11'] and args.key is None:
+            raise argparse.ArgumentError(None,
+                                         f"The -k/--key argument is required for the selected cipher: {func_names(args.code)}")
 
         text = read_file(args.file)
         final = func(text, args.key, encode) if args.key else func(text, encode)
