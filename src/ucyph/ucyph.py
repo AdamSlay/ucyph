@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import argparse
-import toml
 
-from ciphers import *
-from utils import read_file, write_file
+from src.ucyph import __version__ as version
+from src.ucyph.ciphers import *
+from src.ucyph.utils import read_file, write_file
 
 FUNCTION_MAP = {'3': caesar,
                 '47': rot47,
@@ -23,10 +23,6 @@ def func_names(a):
 
 
 def parse_args():
-    # Read the version from pyproject.toml
-    project_info = toml.load("pyproject.toml")["project"]
-    version = project_info["version"]
-
     parser = argparse.ArgumentParser(description='Encrypt a string.')
     parser.add_argument('--version', action='version', version=f'%(prog)s {version}')
     parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='', help='Encrypt message using the given cipher')
