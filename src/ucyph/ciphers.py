@@ -83,6 +83,17 @@ def rot13(strng):
 
 # Vigenere
 def vigenere(text, key, encode=True):
+    """
+    The Vigenère cipher is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers,
+    based on the letters of a keyword. It was invented in 1553 by Giovan Battista Bellaso, and is thus
+    also known as the Bellaso cipher. While the cipher is easy to understand and implement, for three centuries
+    it resisted all attempts to break it; this earned it the description le chiffre indéchiffrable (French for
+    'the indecipherable cipher').
+    :param text: The string to be encoded/decoded
+    :param key: The key to be used for the cipher
+    :param encode: Whether to encode or decode the string
+    :return: The encoded/decoded string
+    """
     text = text.lower()
     key = key.lower()
     alph = 'abcdefghijklmnopqrstuvwxyz'
