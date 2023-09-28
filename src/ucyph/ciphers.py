@@ -179,13 +179,13 @@ def playfair(text: str, key: str, encode=True) -> str:
     # Append last row to diagram
     diagram.append(row)
 
-    # -----Format Strng-----
+    # -----Format Text-----
 
-    # Convert strng to upper + no space
+    # Convert text to upper + no space
     text = text.upper()
     text = text.replace(' ', '')
 
-    # Split strng into pairs
+    # Split text into pairs
     # If pair is two of the same letter,
     # Add 'X' between them
     pair = []
@@ -255,5 +255,4 @@ def playfair(text: str, key: str, encode=True) -> str:
             encoded.append(diagram[coord_a[0]][coord_b[1]])
             encoded.append(diagram[coord_b[0]][coord_a[1]])
 
-    # -----Return-----
     return ''.join(encoded)
