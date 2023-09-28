@@ -39,7 +39,8 @@ def test_vigenere():
 def test_playfair():
     assert playfair('Hide the gold', 'key', True) == 'COLDZOADIMGV'
     assert playfair('COLDZOADIMGV', 'key', False) == 'HIDETHEGOLDX'
-    assert playfair('HELLO WORLD', 'key', True) == 'DBNVMIZMQMGV'  # Test uppercase letters
-    assert playfair('DBNVMIZMQMGV', 'key', False) == 'HELXLOWORLDX'  # Test decoding with uppercase letters
-    assert playfair('hello world', 'key', True) == 'DBNVMIZMQMGV'  # Test lowercase letters
-    assert playfair('DBNVMIZMQMGV', 'key', False) == 'HELXLOWORLDX'  # Test decoding with lowercase letters
+    assert playfair('HELLO WORLD', 'key', True) == 'DBNVMIZMQMGV'
+    assert playfair('DBNVMIZMQMGV', 'key', False) == 'HELXLOWORLDX'
+    assert playfair('hello world', 'key', True) == 'DBNVMIZMQMGV'
+    assert playfair('DBNVMIZMQMGV', 'key', False) == 'HELXLOWORLDX'
+    assert playfair('hello there\n', 'key', True) == 'DBNVMIZOYQAV'
