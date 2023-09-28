@@ -1,26 +1,26 @@
 # ---- Ciphers ----
 
 # OG Caesar - shift of 3
-def caesar(strng, encode=True):
+def caesar(text: str, encode=True) -> str:
     """
     The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which
     each letter in the plaintext is 'shifted' a certain number of places down the alphabet. For example, with a shift
     of 3, A would be replaced by D, B would become E, and so on.
-    :param strng: The string to be encoded/decoded
+    :param text: The string to be encoded/decoded
     :param encode: Whether to encode or decode the string
     :return: The encoded/decoded string
     """
-    strng = strng.lower()
+    text = text.lower()
     az = 'abcdefghijklmnopqrstuvwxyz'
     new = ''
     if encode:
-        for i in strng:
+        for i in text:
             if i.isalpha():
                 new += az[(az.index(i) + 3) % 26]
             else:
                 new += i
     else:
-        for i in strng:
+        for i in text:
             if i.isalpha():
                 if az.index(i) < 3:
                     new += az[26 - (abs(az.index(i) - 3) % 26)]
@@ -32,16 +32,16 @@ def caesar(strng, encode=True):
 
 
 # ROT-47
-def rot47(strng):
+def rot47(text: str) -> str:
     """
     ROT-47 is a derivative of ROT-13 which, in addition to scrambling the basic letters, also treats numbers and
     common symbols. ROT-47 is frequently used to obfuscate plaintext in online forums such as Usenet to hide
     spoilers, punchlines, and puzzle solutions from the casual glance.
-    :param strng: The string to be encoded/decoded
+    :param text: The string to be encoded/decoded
     :return: The encoded/decoded string
     """
     key = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'
-    words = strng.split(' ')
+    words = text.split(' ')
     final = []
 
     for word in words:
@@ -54,17 +54,17 @@ def rot47(strng):
 
 
 # ROT-13
-def rot13(strng):
+def rot13(text: str) -> str:
     """
     ROT-13 ("rotate by 13 places", sometimes hyphenated ROT-13) is a simple letter substitution cipher that replaces a
     letter with the 13th letter after it, in the alphabet. ROT13 is a special case of the Caesar cipher which was
     developed in ancient Rome.
-    :param strng: The string to be encoded/decoded
+    :param text: The string to be encoded/decoded
     :return: The encoded/decoded string
     """
     az = 'abcdefghijklmnopqrstuvwxyz'
     decrypted = ''
-    for i in strng:
+    for i in text:
         if i.isalpha():
             if i.islower():
                 if az.index(i) < 13:
@@ -82,7 +82,7 @@ def rot13(strng):
 
 
 # Vigenere
-def vigenere(text, key, encode=True):
+def vigenere(text: str, key: str, encode=True) -> str:
     """
     The Vigenère cipher is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers,
     based on the letters of a keyword. It was invented in 1553 by Giovan Battista Bellaso, and is thus
@@ -130,13 +130,13 @@ def vigenere(text, key, encode=True):
 
 
 # Playfair
-def playfair(strng, key, encode=True):
+def playfair(text: str, key: str, encode=True) -> str:
     """
     The Playfair cipher is a digraph substitution cipher that was invented in 1854 by Charles Wheatstone,
     but named after Lord Playfair who heavily promoted its use.
     This cipher was used by the British during the Boer War and World War I and the Australians during World War II.
 
-    :param strng: The string to be encoded/decoded
+    :param text: The string to be encoded/decoded
     :param key: The key to be used for the cipher
     :param encode: Whether to encode or decode the string
     :return: The encoded/decoded string
@@ -182,15 +182,15 @@ def playfair(strng, key, encode=True):
     # -----Format Strng-----
 
     # Convert strng to upper + no space
-    strng = strng.upper()
-    strng = strng.replace(' ', '')
+    text = text.upper()
+    text = text.replace(' ', '')
 
     # Split strng into pairs
     # If pair is two of the same letter,
     # Add 'X' between them
     pair = []
     plain_text = []
-    for letter in strng:
+    for letter in text:
         if len(pair) == 1:
             if pair[0] == letter:
                 pair.append('X')
