@@ -42,7 +42,7 @@ def parse_args():
     | Rot-13   | 13          | No           |
     | Rot-47   | 47          | No           |
     """
-    parser = argparse.ArgumentParser(description='Encrypt a file using historical ciphers', epilog=ciphers,)
+    parser = argparse.ArgumentParser(description='Encrypt a file using historical ciphers', epilog=ciphers, formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('-v', '--version', action='version', version=f'%(prog)s {version}')
     parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='', help='Code for the cipher to be used')
     parser.add_argument('file', metavar='', help='File to be encrypted/decrypted')
