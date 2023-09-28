@@ -35,7 +35,7 @@ ucyph 11 output.txt -k password -d
 ## Ciphers
 
 #### Cipher list and usage codes:
-| Cipher   | Usage Code  | Required Key |
+| Cipher   | Usage Code  | Requires Key |
 |----------|-------------|--------------|
 | Caesar   | 3           | No           |
 | Vigenere | 5           | Yes          |

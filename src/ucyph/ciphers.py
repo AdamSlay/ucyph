@@ -2,6 +2,14 @@
 
 # OG Caesar - shift of 3
 def caesar(strng, encode=True):
+    """
+    The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which
+    each letter in the plaintext is 'shifted' a certain number of places down the alphabet. For example, with a shift
+    of 3, A would be replaced by D, B would become E, and so on.
+    :param strng: The string to be encoded/decoded
+    :param encode: Whether to encode or decode the string
+    :return: The encoded/decoded string
+    """
     strng = strng.lower()
     az = 'abcdefghijklmnopqrstuvwxyz'
     new = ''
@@ -25,6 +33,13 @@ def caesar(strng, encode=True):
 
 # ROT-47
 def rot47(strng):
+    """
+    ROT-47 is a derivative of ROT-13 which, in addition to scrambling the basic letters, also treats numbers and
+    common symbols. ROT-47 is frequently used to obfuscate plaintext in online forums such as Usenet to hide
+    spoilers, punchlines, and puzzle solutions from the casual glance.
+    :param strng: The string to be encoded/decoded
+    :return: The encoded/decoded string
+    """
     key = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'
     words = strng.split(' ')
     final = []
@@ -40,6 +55,13 @@ def rot47(strng):
 
 # ROT-13
 def rot13(strng):
+    """
+    ROT-13 ("rotate by 13 places", sometimes hyphenated ROT-13) is a simple letter substitution cipher that replaces a
+    letter with the 13th letter after it, in the alphabet. ROT13 is a special case of the Caesar cipher which was
+    developed in ancient Rome.
+    :param strng: The string to be encoded/decoded
+    :return: The encoded/decoded string
+    """
     az = 'abcdefghijklmnopqrstuvwxyz'
     decrypted = ''
     for i in strng:
@@ -98,6 +120,16 @@ def vigenere(text, key, encode=True):
 
 # Playfair
 def playfair(strng, key, encode=True):
+    """
+    The Playfair cipher is a digraph substitution cipher that was invented in 1854 by Charles Wheatstone,
+    but named after Lord Playfair who heavily promoted its use.
+    This cipher was used by the British during the Boer War and World War I and the Australians during World War II.
+
+    :param strng: The string to be encoded/decoded
+    :param key: The key to be used for the cipher
+    :param encode: Whether to encode or decode the string
+    :return: The encoded/decoded string
+    """
     AZ = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     diagram = []
     row = []

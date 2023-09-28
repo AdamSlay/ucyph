@@ -14,6 +14,11 @@ FUNCTION_MAP = {'3': caesar,
 
 
 def func_names(a):
+    """
+    Return the name of the cipher function
+    :param a: The usage code of the cipher
+    :return: The name of the cipher function
+    """
     FUNCTION_NAMES = {'3': 'Caesar',
                       '13': 'Rot-13',
                       '47': 'Rot-47',
@@ -23,7 +28,21 @@ def func_names(a):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='Encrypt a file using historical ciphers.')
+    """
+    Parse the command line arguments
+    :return: The parsed arguments
+    """
+    ciphers = """
+    Cipher list and usage codes:
+    | Cipher   | Usage Code  | Requires Key |
+    |----------|-------------|--------------|
+    | Caesar   | 3           | No           |
+    | Vigenere | 5           | Yes          |
+    | Playfair | 11          | Yes          |
+    | Rot-13   | 13          | No           |
+    | Rot-47   | 47          | No           |
+    """
+    parser = argparse.ArgumentParser(description='Encrypt a file using historical ciphers', epilog=ciphers,)
     parser.add_argument('-v', '--version', action='version', version=f'%(prog)s {version}')
     parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='', help='Code for the cipher to be used')
     parser.add_argument('file', metavar='', help='File to be encrypted/decrypted')
