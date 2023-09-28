@@ -23,10 +23,10 @@ def func_names(a):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='Encrypt a string.')
-    parser.add_argument('--version', action='version', version=f'%(prog)s {version}')
-    parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='', help='Encrypt message using the given cipher')
-    parser.add_argument('file', metavar='', help='File to be Encrypted/Decrypted')
+    parser = argparse.ArgumentParser(description='Encrypt a file using historical ciphers.')
+    parser.add_argument('-v', '--version', action='version', version=f'%(prog)s {version}')
+    parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='', help='Code for the cipher to be used')
+    parser.add_argument('file', metavar='', help='File to be encrypted/decrypted')
     parser.add_argument('-o', '--output', metavar='', help='Output file')
     parser.add_argument('-k', '--key', metavar='', help='Key/Password for the cipher')
 
@@ -45,7 +45,8 @@ def main():
 
         if args.code in ['5', '11'] and args.key is None:
             raise argparse.ArgumentError(None,
-                                         f"The -k/--key argument is required for the selected cipher: {func_names(args.code)}")
+                                         f"The -k/--key argument is required for the selected cipher: {func_names(args.code)}"
+                                         f"\n\nUsage: ucyph {args.code} {args.file} -k <key> [-o <output_file>] [-d/-e]")
 
         text = read_file(args.file)
         final = func(text, args.key, encode) if args.key else func(text, encode)
@@ -60,6 +61,8 @@ def main():
         print(f'Error reading from input file: {e}')
     except PermissionError as e:
         print(f'Permission denied: {e}')
+    except argparse.ArgumentError as e:
+        print(f'Error: {e}')
     except Exception as e:
         print(f'An unexpected error occurred: {e}')
 
