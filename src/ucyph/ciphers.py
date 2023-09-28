@@ -147,7 +147,8 @@ def playfair(text: str, key: str, encode=True) -> str:
 
     # -----Diagram-----
 
-    # Convert key to upper + no space
+    # Clean text and Convert key to upper + no space
+    text = text.replace('\n', '')
     key = key.upper()
     key = key.replace(' ', '')
 
