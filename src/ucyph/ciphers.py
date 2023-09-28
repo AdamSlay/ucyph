@@ -148,7 +148,7 @@ def playfair(text: str, key: str, encode=True) -> str:
     # -----Diagram-----
 
     # Clean text and Convert key to upper + no space
-    text = ''.join(char if char.isalpha() or char.isspace() else '' for char in text)
+    text = ''.join(char if char.isalpha() or char == ' ' else '' for char in text)
     key = key.upper()
     key = key.replace(' ', '')
 
