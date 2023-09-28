@@ -32,8 +32,19 @@ def parse_args():
     Parse the command line arguments
     :return: The parsed arguments
     """
-    ciphers = """
-    Cipher list and usage codes:
+    examples = """
+    EXAMPLES
+    Encrypt input.txt using the Caesar cipher and save the result to output.txt:
+    ucyph 3 input.txt -o output.txt 
+    
+    Decrypt input.txt using the Vigenere cipher and save the result to output.txt: 
+    ucyph -d 5 input.txt -k mypassword -o output.txt  
+    
+    Encrypt input.txt using the Playfair cipher and overwrite the original file:
+    ucyph 11 input.txt -k mypassword
+    """
+    usage_codes = """
+    USAGE CODES
     | Cipher   | Usage Code  | Requires Key |
     |----------|-------------|--------------|
     | Caesar   | 3           | No           |
@@ -42,12 +53,20 @@ def parse_args():
     | Rot-13   | 13          | No           |
     | Rot-47   | 47          | No           |
     """
-    parser = argparse.ArgumentParser(description='Encrypt a file using historical ciphers', epilog=ciphers, formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='usage code', help='usage code for the cipher being used')
-    parser.add_argument('file', metavar='input file', help='file to be encrypted/decrypted')
+    cipher_descriptions = """
+    CIPHER DESCRIPTIONS
+    Caesar:   substitution cipher that shifts letters by 3 places
+    Rot-13:   substitution cipher that shifts letters by 13 places 
+    Rot-47:   substitution cipher that shifts letters, numbers, and symbols by 47 places
+    Vigenere: series of Caesar ciphers based on a keyword
+    Playfair: substitution cipher that pairs letters in a 5x5 grid and uses a keyword to encode/decode
+    """
+    parser = argparse.ArgumentParser(description='Encrypt or decrypt a file using historical ciphers', epilog=f'{examples}\n{usage_codes}\n{cipher_descriptions}', formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='<usage_code>', help='usage code for the cipher being used')
+    parser.add_argument('file', metavar='<input_file>', help='file to be encrypted/decrypted')
     parser.add_argument('-v', '--version', action='version', version=f'%(prog)s {version}')
-    parser.add_argument('-o', '--output', metavar='<file>', help='the output filename')
-    parser.add_argument('-k', '--key', metavar='<string>', help='key/password for the cipher')
+    parser.add_argument('-o', '--output', metavar='<output_file>', help='the output filename')
+    parser.add_argument('-k', '--key', metavar='<cipher_key>', help='key/password for the cipher (required for some ciphers)')
 
     en_de = parser.add_mutually_exclusive_group()
     en_de.add_argument('-d', '--decode', action='store_true', help='decode the string using current cipher')
