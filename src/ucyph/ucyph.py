@@ -43,11 +43,11 @@ def parse_args():
     | Rot-47   | 47          | No           |
     """
     parser = argparse.ArgumentParser(description='Encrypt a file using historical ciphers', epilog=ciphers, formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='usage code', help='usage code for the cipher being used')
+    parser.add_argument('file', metavar='input file', help='file to be encrypted/decrypted')
     parser.add_argument('-v', '--version', action='version', version=f'%(prog)s {version}')
-    parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='', help='usage code for the cipher being used')
-    parser.add_argument('file', metavar='', help='file to be encrypted/decrypted')
-    parser.add_argument('-o', '--output', metavar='', help='output file')
-    parser.add_argument('-k', '--key', metavar='', help='key/password for the cipher')
+    parser.add_argument('-o', '--output', metavar='<file>', help='the output filename')
+    parser.add_argument('-k', '--key', metavar='<string>', help='key/password for the cipher')
 
     en_de = parser.add_mutually_exclusive_group()
     en_de.add_argument('-d', '--decode', action='store_true', help='decode the string using current cipher')
