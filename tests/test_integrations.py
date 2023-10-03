@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 
@@ -9,3 +10,4 @@ def test_encode_caesar_cipher():
     with open('tests/test_files/test_output.txt', 'r') as f:
         file_contents = f.read()
     assert file_contents == 'khoor'
+    os.remove('tests/test_files/test_output.txt')
