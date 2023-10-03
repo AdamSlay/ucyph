@@ -8,12 +8,22 @@ pip install ucyph
 
 ## Usage
 
-### Examples:
-
-All commands will require a **usage code** and a **text file** to encrypt/decrypt. 
-The **usage code** is a number that corresponds to a cipher([usage codes can be found here](#usage-codes)). 
+All commands will require a **usage code** and a **text file** to encrypt/decrypt.
+The **usage code** is a number that corresponds to a cipher([usage codes can be found here](#usage-codes)).
 The **text file** is the file that will be encrypted/decrypted.
 
+In addition to encrypting files, you can also use the application in **interactive mode**. To activate interactive mode, simply run the command ```ucyph``` without any arguments or with the ```-i``` flag. You will be prompted to enter a **usage code**, **text file**, and **key**(if applicable).
+Interactive mode allows users to encrypt/decrypt text in the command line without having to use files.
+
+### Examples:
+
+#### Interactive Mode
+```shell
+ucyph -i
+```
+
+#### Encrypting/Decrypting Files
+```shell
 This command calls the ```Vigenere``` cipher with a **key** of 'password', and encrypts the text from **hello.txt** in place as an output file is not specified.
 ```shell
 ucyph 5 hello.txt -k 'password'
