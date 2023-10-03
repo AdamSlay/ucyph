@@ -1,7 +1,7 @@
 # ---- Ciphers ----
 
 # OG Caesar - shift of 3
-def caesar(text: str, encode=True) -> str:
+def caesar(text: str, encode=True, *args) -> str:
     """
     The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which
     each letter in the plaintext is 'shifted' a certain number of places down the alphabet. For example, with a shift
@@ -32,7 +32,7 @@ def caesar(text: str, encode=True) -> str:
 
 
 # ROT-47
-def rot47(text: str) -> str:
+def rot47(text: str, *args) -> str:
     """
     ROT-47 is a derivative of ROT-13 which, in addition to scrambling the basic letters, also treats numbers and
     common symbols. ROT-47 is frequently used to obfuscate plaintext in online forums such as Usenet to hide
@@ -54,7 +54,7 @@ def rot47(text: str) -> str:
 
 
 # ROT-13
-def rot13(text: str) -> str:
+def rot13(text: str, *args) -> str:
     """
     ROT-13 ("rotate by 13 places", sometimes hyphenated ROT-13) is a simple letter substitution cipher that replaces a
     letter with the 13th letter after it, in the alphabet. ROT13 is a special case of the Caesar cipher which was
