@@ -55,6 +55,10 @@ def func_names(a):
 
 
 def interactive_mode():
+    """
+    Run the program in interactive mode
+    :return: None
+    """
     print(f"Interactive Mode: Follow the prompts to encrypt or decrypt text. \nUse Ctrl+C to exit.\n{USAGE_CODES}")
     try:
         while True:
