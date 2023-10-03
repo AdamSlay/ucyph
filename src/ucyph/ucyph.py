@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import argparse
 
 from src.ucyph import __version__ as version
@@ -61,15 +59,22 @@ def parse_args():
     Vigenere: series of Caesar ciphers based on a keyword
     Playfair: substitution cipher that pairs letters in a 5x5 grid and uses a keyword to encode/decode
     """
-    parser = argparse.ArgumentParser(description='Encrypt or decrypt a file using historical ciphers', epilog=f'{examples}\n{usage_codes}\n{cipher_descriptions}', formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='<usage_code>', help='usage code for the cipher you want to use. Refer to the USAGE CODES table below')
+    parser = argparse.ArgumentParser(description='Encrypt or decrypt a file using historical ciphers',
+                                     epilog=f'{examples}\n{usage_codes}\n{cipher_descriptions}',
+                                     formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument('code', choices=FUNCTION_MAP.keys(), metavar='<usage_code>',
+                        help='usage code for the cipher you want to use. Refer to the USAGE CODES table below')
     parser.add_argument('file', metavar='<input_file>', help='input file to be encrypted/decrypted')
-    parser.add_argument('-o', '--output', metavar='<output_file>', help='file to output text to, defaults to input file if not specified')
-    parser.add_argument('-k', '--key', metavar='<cipher_key>', help='key/password for the cipher. Not required for some ciphers. Refer to the USAGE CODES table below')
+    parser.add_argument('-o', '--output', metavar='<output_file>',
+                        help='file to output text to, defaults to input file if not specified')
+    parser.add_argument('-k', '--key', metavar='<cipher_key>',
+                        help='key/password for the cipher. Not required for some ciphers. Refer to the USAGE CODES table below')
 
     en_de = parser.add_mutually_exclusive_group()
-    en_de.add_argument('-d', '--decode', action='store_true', help='decode the string using current cipher')
-    en_de.add_argument('-e', '--encode', action='store_true', help='encode the string using current cipher')
+    en_de.add_argument('-d', '--decode', action='store_true',
+                       help='decode the string using current cipher. Cannot be used with -e/--encode')
+    en_de.add_argument('-e', '--encode', action='store_true',
+                       help='encode the string using current cipher. Cannot be used with -d/--decode. This is the default behavior')
 
     parser.add_argument('-v', '--version', action='version', version=f'%(prog)s {version}')
 
