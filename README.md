@@ -23,7 +23,6 @@ ucyph -i
 ```
 
 #### Encrypting/Decrypting Files
-```shell
 This command calls the ```Vigenere``` cipher with a **key** of 'password', and encrypts the text from **hello.txt** in place as an output file is not specified.
 ```shell
 ucyph 5 hello.txt -k 'password'
