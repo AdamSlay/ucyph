@@ -7,7 +7,7 @@ from src.ucyph.ucyph import interactive_mode
 def test_interactive_mode(mock_print, mock_input):
     mock_input.side_effect = ['3', 'Hello', 'e', 'n']
     interactive_mode()
-    mock_print.assert_has_calls([call("The encrypted text is: ebiil")])
+    mock_print.assert_has_calls([call("The encrypted text is: khoor")])
 
 
 @patch('builtins.input')

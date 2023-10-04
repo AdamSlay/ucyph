@@ -69,7 +69,7 @@ def interactive_mode():
             text = input("Enter the text: ")
             key = input("Enter the key: ") if cipher in ['5', '11'] else None
             encode = input("Encrypt or decrypt? (e/d): ") != 'd' if cipher in ['3', '5', '11'] else True
-            result = FUNCTION_MAP[cipher](text, key, encode)
+            result = FUNCTION_MAP[cipher](text, encode, key)
             print(f"The {('encrypted' if encode else 'decrypted')} text is: {result}")
             if input("Continue? (y/n): ") != 'y':
                 break

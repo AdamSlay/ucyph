@@ -28,19 +28,19 @@ def test_rot47():
 
 
 def test_vigenere():
-    assert vigenere('abc', 'key', True) == 'kfa'
-    assert vigenere('kfa', 'key', False) == 'abc'
-    assert vigenere('ABC', 'KEY', True) == 'kfa'
-    assert vigenere('123', 'key', True) == '123'
-    assert vigenere('abc123', 'key', True) == 'kfa123'
-    assert vigenere('!@#', 'key', True) == '!@#'
+    assert vigenere('abc', True, 'key') == 'kfa'
+    assert vigenere('kfa', False, 'key') == 'abc'
+    assert vigenere('ABC', True, 'KEY') == 'kfa'
+    assert vigenere('123', True, 'key') == '123'
+    assert vigenere('abc123', True, 'key') == 'kfa123'
+    assert vigenere('!@#', True, 'key') == '!@#'
 
 
 def test_playfair():
-    assert playfair('Hide the gold', 'key', True) == 'COLDZOADIMGV'
-    assert playfair('COLDZOADIMGV', 'key', False) == 'HIDETHEGOLDX'
-    assert playfair('HELLO WORLD', 'key', True) == 'DBNVMIZMQMGV'
-    assert playfair('DBNVMIZMQMGV', 'key', False) == 'HELXLOWORLDX'
-    assert playfair('hello world', 'key', True) == 'DBNVMIZMQMGV'
-    assert playfair('DBNVMIZMQMGV', 'key', False) == 'HELXLOWORLDX'
-    assert playfair('hello there\n', 'key', True) == 'DBNVMIZOYQAV'
+    assert playfair('Hide the gold', True, 'key') == 'COLDZOADIMGV'
+    assert playfair('COLDZOADIMGV', False, 'key') == 'HIDETHEGOLDX'
+    assert playfair('HELLO WORLD', True, 'key') == 'DBNVMIZMQMGV'
+    assert playfair('DBNVMIZMQMGV', False, 'key') == 'HELXLOWORLDX'
+    assert playfair('hello world', True, 'key') == 'DBNVMIZMQMGV'
+    assert playfair('DBNVMIZMQMGV', False, 'key') == 'HELXLOWORLDX'
+    assert playfair('hello there\n', True, 'key') == 'DBNVMIZOYQAV'

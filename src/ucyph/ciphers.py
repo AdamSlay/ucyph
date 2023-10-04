@@ -1,7 +1,7 @@
 # ---- Ciphers ----
 
 # OG Caesar - shift of 3
-def caesar(text: str, encode=True, *args) -> str:
+def caesar(text: str, encode: bool, *args) -> str:
     """
     The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which
     each letter in the plaintext is 'shifted' a certain number of places down the alphabet. For example, with a shift
@@ -82,7 +82,7 @@ def rot13(text: str, *args) -> str:
 
 
 # Vigenere
-def vigenere(text: str, key: str, encode=True) -> str:
+def vigenere(text: str, encode: bool, key: str) -> str:
     """
     The Vigenère cipher is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers,
     based on the letters of a keyword. It was invented in 1553 by Giovan Battista Bellaso, and is thus
@@ -130,7 +130,7 @@ def vigenere(text: str, key: str, encode=True) -> str:
 
 
 # Playfair
-def playfair(text: str, key: str, encode=True) -> str:
+def playfair(text: str, encode: bool, key: str) -> str:
     """
     The Playfair cipher is a digraph substitution cipher that was invented in 1854 by Charles Wheatstone,
     but named after Lord Playfair who heavily promoted its use.
